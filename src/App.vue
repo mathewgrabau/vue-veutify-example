@@ -47,7 +47,8 @@ export default {
   data: () => ({
     links: [
       { label: 'Home', url: '/' },
-      { label: 'Login', url: '/login' }
+      { label: 'Login', url: '/login' },
+      { label: 'Dashboard', url: '/dashboard' }
     ]
   })
 }
