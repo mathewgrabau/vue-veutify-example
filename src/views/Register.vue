@@ -3,8 +3,12 @@
     <v-row>
       <v-col>
         <h1>Register</h1>
-        <v-form ref="registerForm">
-          <v-text-field label="Name" :rules="nameRules"></v-text-field>
+        <v-form ref="registerForm" v-model="formValid">
+          <v-text-field
+            label="Name"
+            :rules="nameRules"
+            v-model="name"
+          ></v-text-field>
           <v-text-field
             label="Email"
             type="email"
@@ -19,7 +23,7 @@
           <v-file-input label="Attach profile picture"></v-file-input>
           <!-- We don't bother with the hiding/showing for the example. See docs. -->
           <v-text-field
-            v-model="Birthday"
+            v-model="birthday"
             label="Birthday"
             readonly
           ></v-text-field>
@@ -30,7 +34,16 @@
             :rules="agreeToTermsRules"
             required
           ></v-checkbox>
-          <v-btn class="mr-4" type="submit" color="primary">Submit</v-btn>
+          <v-btn
+            class="mr-4"
+            type="submit"
+            color="primary"
+            :disabled="!formValid"
+            >Submit</v-btn
+          >
+          <v-btn class="mr-4" color="success" @click="validateForm"
+            >Validate Form</v-btn
+          >
           <v-btn class="mr-4" color="warning" @click="resetValidation"
             >Reset Validation</v-btn
           >
@@ -64,11 +77,15 @@ export default {
         !!value || 'You must agree to terms and conditions to register.'
     ],
 
+    name: '',
+
     email: '',
     browsers: ['Chrome', 'Edge', 'Safari', 'Firefox', 'Brave'],
 
     birthday: '',
-    agreeToTerms: false
+    agreeToTerms: false,
+
+    formValid: false
   }),
   methods: {
     resetValidation() {
@@ -76,6 +93,9 @@ export default {
     },
     resetForm() {
       this.$refs.registerForm.reset()
+    },
+    validateForm() {
+      this.$refs.registerForm.validate()
     }
   }
 }
