@@ -5,7 +5,13 @@
         <h1>Register</h1>
         <v-form>
           <v-text-field label="Name" :rules="nameRules"></v-text-field>
-          <v-text-field label="Email" type="email"></v-text-field>
+          <v-text-field
+            label="Email"
+            type="email"
+            v-model="email"
+            :rules="emailRules"
+            required
+          ></v-text-field>
           <v-autocomplete
             label="Which browser do you use?"
             :items="browsers"
@@ -37,12 +43,27 @@ export default {
       (value) => !!value || 'Name is required.',
       (value) => value.length > 1 || 'Minimum length is 2.'
     ],
+    emailRules: [
+      (value) => !!value || 'Email is required',
+      (value) => value.indexOf('@') !== 0 || 'Email should have a username.',
+      (value) => value.includes('@') || 'Email should include an @ symbol',
+      (value) =>
+        value.indexOf('.') - value.indexOf('@') > 1 ||
+        'Email should contain a valid domain',
+      (value) =>
+        value.indexOf('.') <= value.length - 3 ||
+        'Email should contain a valid domain extension.'
+    ],
     agreeToTermsRules: [
       (value) =>
         !!value || 'You must agree to terms and conditions to register.'
     ],
+
+    email: '',
     browsers: ['Chrome', 'Edge', 'Safari', 'Firefox', 'Brave'],
-    birthday: ''
+
+    birthday: '',
+    agreeToTerms: false
   })
 }
 </script>
