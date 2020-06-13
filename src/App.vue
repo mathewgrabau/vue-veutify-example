@@ -48,6 +48,7 @@ export default {
     links: [
       { label: 'Home', url: '/' },
       { label: 'Login', url: '/login' },
+      { label: 'Register', url: '/register' },
       { label: 'Dashboard', url: '/dashboard' }
     ]
   })
