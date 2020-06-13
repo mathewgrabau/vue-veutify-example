@@ -4,6 +4,7 @@
       <v-col>
         <h1>Register</h1>
         <v-form>
+          <v-text-field label="Name" :rules="nameRules"></v-text-field>
           <v-text-field label="Email" type="email"></v-text-field>
           <v-autocomplete
             label="Which browser do you use?"
@@ -27,6 +28,10 @@
 <script>
 export default {
   data: () => ({
+    nameRules: [
+      (value) => !!value || 'Name is required.',
+      (value) => value.length > 1 || 'Minimum length is 2.'
+    ],
     browsers: ['Chrome', 'Edge', 'Safari', 'Firefox', 'Brave'],
     birthday: ''
   })
