@@ -18,7 +18,12 @@
             readonly
           ></v-text-field>
           <v-date-picker label="Birthday" v-model="birthday"></v-date-picker>
-          <v-checkbox label="Agree to terms & conditions"></v-checkbox>
+          <v-checkbox
+            label="Agree to terms & conditions"
+            v-model="agreeToTerms"
+            :rules="agreeToTermsRules"
+            required
+          ></v-checkbox>
         </v-form>
       </v-col>
     </v-row>
@@ -31,6 +36,10 @@ export default {
     nameRules: [
       (value) => !!value || 'Name is required.',
       (value) => value.length > 1 || 'Minimum length is 2.'
+    ],
+    agreeToTermsRules: [
+      (value) =>
+        !!value || 'You must agree to terms and conditions to register.'
     ],
     browsers: ['Chrome', 'Edge', 'Safari', 'Firefox', 'Brave'],
     birthday: ''
