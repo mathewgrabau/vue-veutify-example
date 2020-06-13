@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <h1>Register</h1>
-        <v-form>
+        <v-form ref="registerForm">
           <v-text-field label="Name" :rules="nameRules"></v-text-field>
           <v-text-field
             label="Email"
@@ -30,6 +30,11 @@
             :rules="agreeToTermsRules"
             required
           ></v-checkbox>
+          <v-btn type="submit" color="primary">Submit</v-btn>
+          <v-btn color="warning" @click="resetValidation"
+            >Reset Validation</v-btn
+          >
+          <v-btn color="error" @click="resetForm">Reset Form</v-btn>
         </v-form>
       </v-col>
     </v-row>
@@ -64,6 +69,14 @@ export default {
 
     birthday: '',
     agreeToTerms: false
-  })
+  }),
+  methods: {
+    resetValidation() {
+      this.$refs.registerForm.resetValidation()
+    },
+    resetForm() {
+      this.$refs.registerForm.reset()
+    }
+  }
 }
 </script>
