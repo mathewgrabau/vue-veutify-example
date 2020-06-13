@@ -10,22 +10,28 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col v-for="statistic in statistics" :key="`${statistic.title}`">
+      <v-col
+        v-for="statistic in statistics"
+        :key="`${statistic.title}`"
+        cols="12"
+        md="6"
+        lg="3"
+      >
         <StatisticCard :statistic="statistic" />
       </v-col>
     </v-row>
 
     <v-row>
-      <v-col cols="8">
+      <v-col cols="12" md="8">
         <EmployeesTable :employees="employees" @select-employee="setEmployee" />
       </v-col>
-      <v-col cols="4">
+      <v-col cols="12" md="4">
         <EventTimeline :timeline="timeline" />
       </v-col>
     </v-row>
 
     <!-- left property changes the alignment of the component. Breakpoint used to align it only on the larger screens. -->
-    <v-snackbar v-model="snackbar" :left="$vuetify.breakpoint.lgAnUp">
+    <v-snackbar v-model="snackbar" :left="$vuetify.breakpoint.lgAndUp">
       You have selected {{ selectedEmployee.name }},
       {{ selectedEmployee.title }}
       <v-btn color="pink" text @click="snackbar = false">
