@@ -3,7 +3,9 @@
     <h1>Dashboard</h1>
 
     <v-row>
-      <v-col v-for="sale in sales" :key="`${sale.title}`">
+      <!-- cols=12 means that it occupies the full-width on xs devices -->
+      <!-- md="4" makes covers splitting into three columns on others. -->
+      <v-col v-for="sale in sales" :key="`${sale.title}`" cols="12" md="4">
         <SalesGraph :sale="sale" />
       </v-col>
     </v-row>
@@ -22,7 +24,8 @@
       </v-col>
     </v-row>
 
-    <v-snackbar v-model="snackbar">
+    <!-- left property changes the alignment of the component. Breakpoint used to align it only on the larger screens. -->
+    <v-snackbar v-model="snackbar" :left="$vuetify.breakpoint.lgAnUp">
       You have selected {{ selectedEmployee.name }},
       {{ selectedEmployee.title }}
       <v-btn color="pink" text @click="snackbar = false">
