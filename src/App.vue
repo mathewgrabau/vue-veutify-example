@@ -12,6 +12,9 @@
       >
         {{ link.label }}
       </v-btn>
+      <v-btn @click="toggleTheme" text rounded color="white" class="my-2"
+        >Toggle Theme</v-btn
+      >
     </v-app-bar>
     <!-- Fixes the bad display/overlap of the component (without this). -->
     <v-content>
@@ -30,6 +33,7 @@
         >
           {{ link.label }}
         </v-btn>
+
         <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
           {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
         </v-col>
@@ -51,6 +55,12 @@ export default {
       { label: 'Register', url: '/register' },
       { label: 'Dashboard', url: '/dashboard' }
     ]
-  })
+  }),
+
+  methods: {
+    toggleTheme() {
+      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+    }
+  }
 }
 </script>
